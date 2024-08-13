@@ -10,7 +10,7 @@ const ProtectedRoute = ({ element: Component, requiredRole }) => {
     return <Navigate to="/login" />;
   }
 
-  return Component;
+  return <Component />;
 };
 
 export default ProtectedRoute;

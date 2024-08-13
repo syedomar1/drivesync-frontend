@@ -8,10 +8,11 @@ import AssignmentForm from './components/AssignmentForm';
 import Homepage from './components/HomePage';
 import Login from './components/Login';
 import { AuthProvider } from "./components/AuthContext";
-import ProtectedRoute from './components/ProtectedRoute';
+import DriverAssignments from './components/DriverAssignments';
 
 function App() {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const userId = localStorage.getItem("_id"); // Retrieve user ID from local storage
   const [drivers, setDrivers] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const API_URL = process.env.REACT_APP_BACKEND_URL_PROD || process.env.REACT_APP_BACKEND_URL_LOCAL;
@@ -50,8 +51,12 @@ function App() {
             <Route path="/driverform" element={<DriverForm addDriver={addDriver} />} />
             <Route path="/drivers" element={<DriverList drivers={drivers} />} />
             <Route path="/assignments" element={<AssignmentForm vehicles={vehicles} drivers={drivers} assignDriver={assignDriver} />} />
+            <Route path="/driver-assignments" element={<DriverAssignments userId={userId} />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/vehicles" element={<ProtectedRoute element={<VehicleList vehicles={vehicles} assignDriver={assignDriver} unassignDriver={unassignDriver} drivers={drivers} />} isAdmin={isAdmin} />} />
+            <Route 
+              path="/vehicles" 
+              element={<VehicleList vehicles={vehicles} assignDriver={assignDriver} unassignDriver={unassignDriver} drivers={drivers} />} 
+            />
           </Routes>
         </div>
       </Router>
