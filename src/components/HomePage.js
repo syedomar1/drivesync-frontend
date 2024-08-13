@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Homepage = () => {
   return (
@@ -18,7 +19,12 @@ const Homepage = () => {
         <section className="py-16 mt-8">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap -mx-4">
-              <div className="w-full md:w-1/3 px-4 mb-8 md:mb-0">
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="w-full md:w-1/3 px-4 mb-8 md:mb-0"
+              >
                 <Link to="/driverform" className="no-underline">
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <div className="p-6 text-center">
@@ -27,8 +33,13 @@ const Homepage = () => {
                     </div>
                   </div>
                 </Link>
-              </div>
-              <div className="w-full md:w-1/3 px-4 mb-8 md:mb-0">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="w-full md:w-1/3 px-4 mb-8 md:mb-0"
+              >
                 <Link to="/vehicles" className="no-underline">
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <div className="p-6 text-center">
@@ -37,8 +48,13 @@ const Homepage = () => {
                     </div>
                   </div>
                 </Link>
-              </div>
-              <div className="w-full md:w-1/3 px-4">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="w-full md:w-1/3 px-4"
+              >
                 <Link to="/assignments" className="no-underline">
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                     <div className="p-6 text-center">
@@ -47,7 +63,7 @@ const Homepage = () => {
                     </div>
                   </div>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -58,14 +74,6 @@ const Homepage = () => {
           <p className="text-darkPurple">&copy; 2024 Vehicle-Driver Mapping System. All rights reserved.</p>
         </div>
       </footer>
-
-      <style jsx>{`
-        .hover-card:hover {
-          background-color: #f8f9fa;
-          transform: translateY(-5px);
-          transition: all 0.3s ease-in-out;
-        }
-      `}</style>
     </div>
   );
 };
