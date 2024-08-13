@@ -11,6 +11,7 @@ const DriverForm = ({ addDriver }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newDriver = { name, email, phone, location, shift };
     const API_URL = process.env.REACT_APP_BACKEND_URL_PROD || process.env.REACT_APP_BACKEND_URL_LOCAL;
 
@@ -43,8 +44,9 @@ const DriverForm = ({ addDriver }) => {
           transition: Bounce,
         });
       } else {
-        console.error('Failed to create driver');
-        toast.error(response.error, {
+        const error = await response.json();
+        console.error('Failed to create driver:', error);
+        toast.error(error.message || 'Failed to create driver', {
           position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -62,7 +64,6 @@ const DriverForm = ({ addDriver }) => {
   };
 
   return (
-    
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
       <ToastContainer
         position="bottom-center"
