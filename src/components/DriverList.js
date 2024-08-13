@@ -18,15 +18,17 @@ const DriverList = ({ drivers }) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         className="w-full p-2 mb-4 border border-gray-300 rounded-md"
       />
-      <ul className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredDrivers.map((driver) => (
-          <li key={driver.id} className="border p-4 rounded-md">
-            <div className="font-medium">{driver.name}</div>
+          <div key={driver.id} className="border p-4 rounded-md shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="font-medium text-darkPurple">{driver.name}</div>
             <div>Phone: {driver.phone}</div>
             <div>Email: {driver.email}</div>
-          </li>
+            <div>Location: {driver.location}</div>
+            <div>Shift: {driver.shift}</div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
