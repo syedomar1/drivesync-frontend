@@ -10,13 +10,14 @@ const AssignmentForm = ({ vehicles, drivers, assignDriver }) => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [driverDetails, setDriverDetails] = useState(null);
+  const API_URL = process.env.REACT_APP_BACKEND_URL_PROD || process.env.REACT_APP_BACKEND_URL_LOCAL;
 
   useEffect(() => {
     if (selectedDriver) {
       // Fetch driver details (including assignments)
       const fetchDriverDetails = async () => {
         try {
-          const response = await fetch(`/api/drivers/${selectedDriver}`);
+          const response = await fetch(`${API_URL}/api/drivers/${selectedDriver}`);
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.error || 'Failed to fetch driver details');
@@ -47,7 +48,7 @@ const AssignmentForm = ({ vehicles, drivers, assignDriver }) => {
     const assignment = { driverId: selectedDriver, vehicleId: selectedVehicle, startTime, endTime };
   
     try {
-      const response = await fetch(`/api/assignments`, {
+      const response = await fetch(`${API_URL}/api/assignments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
