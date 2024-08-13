@@ -5,7 +5,7 @@ import { AuthContext } from './AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -29,6 +29,9 @@ const Navbar = () => {
               <Link to="/drivers" className="hover:text-lightPurple">Drivers</Link>
               <Link to="/vehicles" className="hover:text-lightPurple">Vehicles</Link>
               <Link to="/assignments" className="hover:text-lightPurple">Assignments</Link>
+              {user && user.role === 'staff' && (
+                <Link to="/driver-assignments" className="hover:text-lightPurple">My Assignments</Link>
+              )}
             </>
           )}
         </div>
@@ -63,6 +66,9 @@ const Navbar = () => {
                 <Link to="/drivers" className="block px-3 py-2 rounded-md text-base font-medium text-lightPurple hover:bg-darkPurple">Drivers</Link>
                 <Link to="/vehicles" className="block px-3 py-2 rounded-md text-base font-medium text-lightPurple hover:bg-darkPurple">Vehicles</Link>
                 <Link to="/assignments" className="block px-3 py-2 rounded-md text-base font-medium text-lightPurple hover:bg-darkPurple">Assignments</Link>
+                {user && user.role === 'staff' && (
+                  <Link to="/driver-assignments" className="block px-3 py-2 rounded-md text-base font-medium text-lightPurple hover:bg-darkPurple">My Assignments</Link>
+                )}
               </>
             )}
             {isAuthenticated ? (
