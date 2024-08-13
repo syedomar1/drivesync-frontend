@@ -25,17 +25,7 @@ const AssignmentForm = ({ vehicles, drivers, assignDriver }) => {
           const data = await response.json();
           setDriverDetails(data);
         } catch (error) {
-          toast.error('Error fetching driver details', {
-            position: "bottom-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-          });
+          
         }
       };
 
